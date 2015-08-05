@@ -1,7 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.treehouse.reinhardt2.interactivestory.ui.StoryActivity">
+    tools:context="com.treehouse.reinhardt2.interactivestory.ui.StoryActivity"
+                android:background="@android:color/white">
 
     <ImageView
         android:layout_width="match_parent"
@@ -26,4 +27,27 @@
         android:paddingRight="30dp"
         android:paddingTop="15dp"
         android:lineSpacingMultiplier="1.2"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stop and Investigate"
+        android:id="@+id/choiceButton2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@android:color/white"
+        android:textColor="#120dd9"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Continue home to Earth"
+        android:id="@+id/choiceButton1"
+        android:layout_above="@+id/choiceButton2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="false"
+        android:background="@android:color/white"
+        android:textColor="#120dd9"/>
 </RelativeLayout>
