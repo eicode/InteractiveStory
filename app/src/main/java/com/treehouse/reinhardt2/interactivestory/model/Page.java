@@ -16,7 +16,6 @@ public class Page {
         mText = text;
         mChoice1 = choice1;
         mChoice2 = choice2;
-        mIsFinal = true;
     }
 
     public Page(int imageId, String text){
@@ -24,6 +23,7 @@ public class Page {
         mText = text;
         mChoice1 = null;
         mChoice2 = null;
+        mIsFinal = true; //no choices are passed
     }
 
     public boolean isFinal() {

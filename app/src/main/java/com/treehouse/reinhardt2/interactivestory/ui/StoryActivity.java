@@ -34,12 +34,12 @@ public class StoryActivity extends Activity {
         Intent intent = getIntent();
         mName = intent.getStringExtra(getString(R.string.key_name));
 
-        if (mName == null){
+        if (mName == null) {
             mName = "Friend";
         }
         //Log.d(TAG, mName);
 
-        mImageView = (ImageView)findViewById(R.id.storyImageView);
+        mImageView = (ImageView) findViewById(R.id.storyImageView);
         mTextView = (TextView) findViewById(R.id.storyTextView);
         mChoice1 = (Button) findViewById(R.id.choiceButton1);
         mChoice2 = (Button) findViewById(R.id.choiceButton2);
@@ -47,7 +47,7 @@ public class StoryActivity extends Activity {
         loadPage(0);
     }
 
-    private void loadPage(int choice){
+    private void loadPage(int choice) {
         mCurrentPage = mStory.getPage(choice);
 
         Drawable drawable = getResources().getDrawable(mCurrentPage.getImageId());
@@ -59,24 +59,34 @@ public class StoryActivity extends Activity {
 
         mTextView.setText(pageText);
 
-        mChoice1.setText(mCurrentPage.getChoice1().getText());
-        mChoice2.setText(mCurrentPage.getChoice2().getText());
+        if (mCurrentPage.isFinal()) {
+            mChoice1.setVisibility(View.INVISIBLE);
+            mChoice2.setText("PLAY AGAIN");
+            mChoice2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        } else {
+            mChoice1.setText(mCurrentPage.getChoice1().getText());
+            mChoice2.setText(mCurrentPage.getChoice2().getText());
 
-        mChoice1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int nextPage = mCurrentPage.getChoice1().getNextPage();
-                loadPage(nextPage);
-            }
-        });
+            mChoice1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int nextPage = mCurrentPage.getChoice1().getNextPage();
+                    loadPage(nextPage);
+                }
+            });
 
-        mChoice2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int nextPage = mCurrentPage.getChoice2().getNextPage();
-                loadPage(nextPage);
-            }
-        });
+            mChoice2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int nextPage = mCurrentPage.getChoice2().getNextPage();
+                    loadPage(nextPage);
+                }
+            });
+        }
     }
-
 }
